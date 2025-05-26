@@ -58,6 +58,10 @@ class Solution {
         for(int i=0; i<nums.length; i++){
             int a = nums[i];
 
+            if(a > 0){ //If "a" is > 0, then we won't be able to sum to 0 if the list is sorted.
+                break;
+            }
+
             if(i>0 && nums[i-1] == a){
                 continue;
             }
