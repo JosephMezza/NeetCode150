@@ -2,7 +2,12 @@
 import java.util.HashSet;
 
 
-//MORE IMPROVEMENTS
+//I think this is the cleanest solution, anything shorter becomes hard to understand. The key to this solution is the inner while
+//loop. So, when the character is not present in the HashSet, we skip the loop and just add it to the HashSet and recompute
+//our maxLength. Otherwise, we clean up the HashSet until after the repeating character and increment our pointer to the same place.
+//Ex; abczucqe, when we reach the 2nd 'c', we will delete (abc) from the HashSet and L will become index 3->'z' and then
+//we re-add 'c' and recompute the maxLength. Can this ever generate a new maxLength? No, because we just removed characters
+//from the hashSet that were there for the previous interation. So the HashSet size is <= to the previous itteration
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         HashSet<Character> hash = new HashSet<>();
@@ -19,7 +24,6 @@ class Solution {
 
             hash.add(c);
             maxLength = Math.max(hash.size(), maxLength);
-            r++;
         }
 
         return maxLength;
